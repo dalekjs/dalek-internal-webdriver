@@ -37,4 +37,5 @@ fs.readdirSync(dir).forEach(function (file) {
   require(dir + file)(Driver);
 });
 
+// export the webdriver module
 module.exports = WebDriver;
