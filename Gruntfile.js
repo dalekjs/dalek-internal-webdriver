@@ -157,10 +157,6 @@ module.exports = function(grunt) {
         fs.writeFileSync(__dirname + '/report/complexity/' + file, '{}');
       }
     });
-
-    // generate code coverage helper file
-    var coverageHelper = 'require("blanket")({pattern: [require("fs").realpathSync(__dirname + "/../index.js"), require("fs").realpathSync(__dirname + "/../lib/")]});';
-    fs.writeFileSync(__dirname + '/coverage/blanket.js', coverageHelper);
   });
 
   // prepare files & folders for coverage
