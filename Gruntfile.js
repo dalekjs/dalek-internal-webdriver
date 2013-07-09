@@ -9,13 +9,17 @@ module.exports = function(grunt) {
     // define a src set of files for other tasks
     src: {
       lint: ['Gruntfile.js', 'index.js', 'lib/**/*.js', 'test/*.js'],
-      complexity: ['index.js', 'lib/**/*.js', 'test/*.js'],
+      complexity: ['index.js', 'lib/**/*.js'],
       test: ['test/*.js'],
       src: ['index.js']
     },
 
-    // clean coverage helper file
-    clean: ['coverage', 'report', 'report.zip'],
+    // clean automatically generated helper files & docs
+    clean: {
+      coverage: ['coverage', 'report/coverage'],
+      report: ['report/complexity', 'report/api', 'report/docs'],
+      reportZip: ['report.zip']
+    },
 
     // linting
     jshint: {
@@ -51,7 +55,7 @@ module.exports = function(grunt) {
         options: {
           cyclomatic: 10,
           halstead: 23,
-          maintainability: 80
+          maintainability: 70
         }
       }
     },
@@ -104,37 +108,77 @@ module.exports = function(grunt) {
 
   });
 
-  // prepare files & folders for grunt:plato & coverage
-  grunt.registerTask('prepare', function () {
+  // prepare files & folders for grunt:plato
+  grunt.registerTask('preparePlato', function () {
     var fs = require('fs');
 
     // generate dirs for docs & reports
-    ['coverage', 'report', 'report/coverage',
-    'report/complexity', 'report/complexity/files',
+    ['report', 'report/complexity', 'report/complexity/files',
     'report/complexity/files/index_js',
-    'report/complexity/files/lib_clients_js',
-    'report/complexity/files/lib_config_js',
     'report/complexity/files/lib_driver_js',
-    'report/complexity/files/lib_reporter_js',
-    'report/complexity/files/lib_test_js',
-    'report/complexity/files/lib_testsuite_js',
-    'report/complexity/files/lib_timer_js',
-    'report/complexity/files/test_lib_config_TEST_js'].forEach(function (path) {
-      fs.mkdirSync(__dirname + '/' + path);
+    'report/complexity/files/lib_webdriver_js',
+    'report/complexity/files/lib_commands_cookie_js',
+    'report/complexity/files/lib_commands_element_js',
+    'report/complexity/files/lib_commands_execute_js',
+    'report/complexity/files/lib_commands_frame_js',
+    'report/complexity/files/lib_commands_ime_js',
+    'report/complexity/files/lib_commands_interaction_js',
+    'report/complexity/files/lib_commands_page_js',
+    'report/complexity/files/lib_commands_screenshot_js',
+    'report/complexity/files/lib_commands_session_js',
+    'report/complexity/files/lib_commands_storage_js',
+    'report/complexity/files/lib_commands_timeout_js',
+    'report/complexity/files/lib_commands_url_js',
+    'report/complexity/files/lib_commands_window_js'].forEach(function (path) {
+      if (!fs.existsSync(__dirname + '/' + path)) {
+        fs.mkdirSync(__dirname + '/' + path);
+      }
     });
 
     // store some dummy reports, so that grunt plato doesnt complain
     ['report.history.json',
-    'files/test_lib_config_TEST_js/report.history.json',
     'files/index_js/report.history.json',
-    'files/lib_clients_js/report.history.json',
-    'files/lib_timer_js/report.history.json'].forEach(function (file) {
-      fs.writeFileSync(__dirname + '/report/complexity/' + file, '{}');
+    'files/lib_driver_js/report.history.json',
+    'files/lib_webdriver_js/report.history.json',
+    'files/lib_commands_cookie_js/report.history.json',
+    'files/lib_commands_element_js/report.history.json',
+    'files/lib_commands_execute_js/report.history.json',
+    'files/lib_commands_frame_js/report.history.json',
+    'files/lib_commands_ime_js/report.history.json',
+    'files/lib_commands_interaction_js/report.history.json',
+    'files/lib_commands_page_js/report.history.json',
+    'files/lib_commands_screenshot_js/report.history.json',
+    'files/lib_commands_session_js/report.history.json',
+    'files/lib_commands_storage_js/report.history.json',
+    'files/lib_commands_timeout_js/report.history.json',
+    'files/lib_commands_url_js/report.history.json',
+    'files/lib_commands_window_js/report.history.json'].forEach(function (file) {
+      if (!fs.existsSync(__dirname + '/report/complexity/' + file)) {
+        fs.writeFileSync(__dirname + '/report/complexity/' + file, '{}');
+      }
     });
 
     // generate code coverage helper file
-    var coverageHelper = 'require("blanket")({pattern: require("fs").realpathSync(__dirname + "/../index.js")});';
+    var coverageHelper = 'require("blanket")({pattern: [require("fs").realpathSync(__dirname + "/../index.js"), require("fs").realpathSync(__dirname + "/../lib/")]});';
     fs.writeFileSync(__dirname + '/coverage/blanket.js', coverageHelper);
+  });
+
+  // prepare files & folders for coverage
+  grunt.registerTask('prepareCoverage', function () {
+    var fs = require('fs');
+
+    // generate folders
+    ['coverage', 'report', 'report/coverage'].forEach(function (folder) {
+      if (!fs.existsSync(__dirname + '/' + folder)) {
+        fs.mkdirSync(__dirname + '/' + folder);
+      }
+    });
+
+    // generate code coverage helper file
+    var coverageHelper = 'require("blanket")({pattern: [require("fs").realpathSync(__dirname + "/../index.js"), require("fs").realpathSync(__dirname + "/../lib/")]});';
+    if (!fs.existsSync(__dirname + '/coverage/blanket.js')) {
+      fs.writeFileSync(__dirname + '/coverage/blanket.js', coverageHelper);
+    }
   });
 
   // load 3rd party tasks
@@ -149,6 +193,7 @@ module.exports = function(grunt) {
 
   // define runner tasks
   grunt.registerTask('lint', 'jshint');
-  grunt.registerTask('test', ['clean', 'prepare', 'lint', 'mochaTest', 'complexity']);
-  grunt.registerTask('docs', ['clean', 'prepare', 'plato', 'mochaTest', 'documantix', 'yuidoc', 'compress']);
+  grunt.registerTask('test', ['clean:coverage', 'prepareCoverage', 'lint', 'mochaTest', 'complexity']);
+  grunt.registerTask('docs', ['clean:reportZip', 'clean:report', 'preparePlato', 'plato', 'documantix', 'yuidoc', 'compress']);
+  grunt.registerTask('all', ['clean', 'test', 'docs']);
 };
