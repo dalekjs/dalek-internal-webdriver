@@ -14,7 +14,8 @@ dalek-internal-webdriver
 [![NPM](https://nodei.co/npm/dalek-internal-webdriver.png)](https://nodei.co/npm/dalek-internal-webdriver/)
 ## Ressources
 
-[API Documentation](http://dalekjs.com/package/dalek-internal-webdriver/master/api/index.html) -
+[API Docs](http://dalekjs.com/package/dalek-internal-webdriver/master/api/index.html) -
+[Trello](https://trello.com/b/DvMQWBMg/dalek-internal-webdriver) -
 [Code coverage](http://dalekjs.com/package/dalek-internal-webdriver/master/coverage/index.html) -
 [Code complexity](http://dalekjs.com/package/dalek-internal-webdriver/master/complexity/index.html) -
 [Contributing](https://github.com/dalekjs/dalek-internal-webdriver/blob/master/CONTRIBUTING.md) -
