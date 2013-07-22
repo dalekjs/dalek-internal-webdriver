@@ -24,6 +24,13 @@
 
 'use strict';
 
+/**
+ * Its a webdriver client
+ *
+ * @package Webdriver
+ * @api
+ */
+
 // ext. libs
 var fs = require('fs');
 

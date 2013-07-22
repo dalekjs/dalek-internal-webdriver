@@ -8,14 +8,17 @@ dalek-internal-webdriver
 [![Dependency Status](https://david-dm.org/dalekjs/dalek-internal-webdriver.png)](https://david-dm.org/dalekjs/dalek-internal-webdriver)
 [![devDependency Status](https://david-dm.org/dalekjs/dalek-internal-webdriver/dev-status.png)](https://david-dm.org/dalekjs/dalek-internal-webdriver#info=devDependencies)
 [![NPM version](https://badge.fury.io/js/dalek-internal-webdriver.png)](http://badge.fury.io/js/dalek-internal-webdriver)
+[![Coverage](http://dalekjs.com/package/dalek-internal-webdriver/master/coverage/coverage.png)](http://dalekjs.com/package/dalek-internal-webdriver/master/coverage/index.html)
+[![unstable](https://rawgithub.com/hughsk/stability-badges/master/dist/unstable.svg)](http://github.com/hughsk/stability-badges)
 
+[![NPM](https://nodei.co/npm/dalek-internal-webdriver.png)](https://nodei.co/npm/dalek-internal-webdriver/)
 ## Ressources
 
 [API Documentation](http://dalekjs.com/package/dalek-internal-webdriver/master/api/index.html) -
 [Code coverage](http://dalekjs.com/package/dalek-internal-webdriver/master/coverage/index.html) -
 [Code complexity](http://dalekjs.com/package/dalek-internal-webdriver/master/complexity/index.html) -
 [Contributing](https://github.com/dalekjs/dalek-internal-webdriver/blob/master/CONTRIBUTING.md) -
-[User Docs](http://dalekjs.com/docs/master/index.html) -
+[User Docs](http://dalekjs.com/docs/webdriver.html) -
 [Homepage](http://dalekjs.com) -
 [Twitter](http://twitter.com/dalekjs)
 
