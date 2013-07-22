@@ -27,7 +27,7 @@
 /**
  * Its a webdriver client
  *
- * @package Webdriver
+ * @part Webdriver
  * @api
  */
 
