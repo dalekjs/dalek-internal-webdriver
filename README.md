@@ -12,6 +12,8 @@ dalek-internal-webdriver
 [![unstable](https://rawgithub.com/hughsk/stability-badges/master/dist/unstable.svg)](http://github.com/hughsk/stability-badges)
 
 [![NPM](https://nodei.co/npm/dalek-internal-webdriver.png)](https://nodei.co/npm/dalek-internal-webdriver/)
+[![NPM](https://nodei.co/npm-dl/dalek-internal-webdriver.png)](https://nodei.co/npm/dalek-internal-webdriver/)
+
 ## Ressources
 
 [API Docs](http://dalekjs.com/package/dalek-internal-webdriver/master/api/index.html) -
@@ -22,6 +24,10 @@ dalek-internal-webdriver
 [User Docs](http://dalekjs.com/docs/webdriver.html) -
 [Homepage](http://dalekjs.com) -
 [Twitter](http://twitter.com/dalekjs)
+
+## Docs
+
+Webdriver plugin for DalekJS.
 
 ## Help Is Just A Click Away
 
@@ -56,7 +62,7 @@ requests that implement the feature).
 other, better channels for seeking assistance, like StackOverflow and the
 Google Groups mailing list.
 
-![DalekJS](https://raw.github.com/dalekjs/dalekjs.com/master/img/logo.jpg)
+![DalekJS](https://raw.github.com/dalekjs/dalekjs.com/master/img/logo.png)
 
 ## Legal FooBar (MIT License)
 
