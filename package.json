@@ -1,6 +1,6 @@
 {
   "name": "dalek-internal-webdriver",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "JavaScript Webdriver Client for DalekJS",
   "main": "./index.js",
   "directories": {
